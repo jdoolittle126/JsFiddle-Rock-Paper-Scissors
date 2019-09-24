@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  
+
+  
+  
+  
+
+  
+
+  <script type="text/javascript" src="/js/lib/dummy.js"></script>
+
+  
+
+  
+
+  
+
+  
+    <link rel="stylesheet" type="text/css" href="/css/result-light.css">
+  
+
+  
+
+  <style type="text/css">
+    
+  </style>
+
+  <title> by jonathandoolittle18</title>
+
+  
+</head>
+
+<body>
+  <body onload="init();">
+  <p id="scores">P1: 0 P2: 0 DRAW: 0</p>
+
+  <p>Player 1</p>
+  <form id="p1form">
+    <input type="radio" name="p1-option" value="ROCK" checked> ROCK<br>
+    <input type="radio" name="p1-option" value="PAPER"> PAPER<br>
+    <input type="radio" name="p1-option" value="SCISSORS"> SCISSORS
+  </form>
+
+  <p>Player 2</p>
+  <form id="p2form">
+    <input type="radio" name="p2-option" value="ROCK" checked> ROCK<br>
+    <input type="radio" name="p2-option" value="PAPER"> PAPER<br>
+    <input type="radio" name="p2-option" value="SCISSORS"> SCISSORS
+  </form>
+
+  <br>
+
+  <button onclick="startGame()">Play</button>
+  <button onclick="resetScore()">Reset</button>
+  </body>
+  
+
+
+
+
+<script type='text/javascript'>//<![CDATA[
+
+var score1 = 0, score2 = 0, draw = 0;
+var rock, paper, scissors;
+
+function Pawn(name) {
+		this.name = name;
+}
+
+function init() {
+  rock = new Pawn("ROCK");
+  paper = new Pawn("PAPER");
+  scissors = new Pawn("SCISSORS");
+  rock.beats = scissors;
+  paper.beats = rock;
+  scissors.beats = paper;
+  
+}
+
+function resetScore() {
+	score1 = 0;
+  score2 = 0;
+  draw = 0;
+  updateScores();
+}
+
+function updateScores(){
+	document.getElementById("scores").innerHTML = "P1: " + score1 + " P2: " + score2 + " DRAWS: " + draw;
+}
+
+function debugPrintScores(){
+	console.log("P1: " + score1 + " P2: " + score2 + " DRAWS: " + draw);
+}
+
+function testGame(p1, p2) {
+	if(p1.beats.name == p2.name) { 
+  	score1++;
+  } else if(p2.beats.name == p1.name) {
+  	score2++;
+  } else {
+  	draw++;
+	}
+}
+
+function startGame() {
+	var player1, player2;
+  
+  switch(document.querySelector('input[name="p1-option"]:checked').value) {
+		case "ROCK":
+    	player1 = rock;
+    	break;
+     case "PAPER":
+     	player1 = paper;
+     	break;
+     case "SCISSORS":
+     	player1 = scissors;
+     	break;
+  }
+  
+   switch(document.querySelector('input[name="p2-option"]:checked').value) {
+		case "ROCK":
+    	player2 = rock;
+    	break;
+     case "PAPER":
+     	player2 = paper;
+     	break;
+     case "SCISSORS":
+     	player2 = scissors;
+     	break;
+  }
+  
+  testGame(player1, player2);
+  updateScores();
+
+}
+
+
+
+
+
+
+
+
+
+
+//]]> 
+
+</script>
+
+  <script>
+  // tell the embed parent frame the height of the content
+  if (window.parent && window.parent.parent){
+    window.parent.parent.postMessage(["resultsFrame", {
+      height: document.body.getBoundingClientRect().height,
+      slug: "Lh3v0hzo"
+    }], "*")
+  }
+</script>
+
+</body>
+
+</html>
